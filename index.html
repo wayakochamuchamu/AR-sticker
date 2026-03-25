@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Green AR</title>
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    #container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+    }
+
+    #video,
+    #overlayCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    #video {
+      z-index: 0;
+      background: #000;
+    }
+
+    #overlayCanvas {
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    #msg {
+      position: absolute;
+      z-index: 2;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font: 14px/1.4 sans-serif;
+      background: rgba(0,0,0,0.45);
+      padding: 8px 12px;
+      border-radius: 10px;
+      max-width: calc(100vw - 32px);
+      text-align: center;
+      white-space: pre-wrap;
+    }
+
+    #retryBtn {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.95);
+      color: #111;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <video id="video" autoplay muted playsinline webkit-playsinline></video>
+    <canvas id="overlayCanvas"></canvas>
+    <div id="msg">カメラを起動しています…</div>
+    <button id="retryBtn" type="button">再試行</button>
+  </div>
+
+  <img id="stickerImg" src="pkpk.png" alt="" style="display:none;">
+
+  <script src="script.js"></script>
+</body>
+</html>
